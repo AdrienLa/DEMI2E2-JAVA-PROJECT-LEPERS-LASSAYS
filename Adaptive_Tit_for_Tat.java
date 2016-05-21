@@ -28,10 +28,10 @@ public class Adaptive_Tit_for_Tat implements Thug{
 	public ArrayList<Character> getAllChoices(){
 		return choice;
 	}
-	public char getLastChoice(){
+	public Character getLastChoice(){
 		return choice.get(-1);
 	}
-	public char getChoiceRoundi(int roundi){
+	public Character getChoiceRoundi(int roundi){
 		return choice.get(roundi);
 	}
 	
@@ -49,6 +49,27 @@ public class Adaptive_Tit_for_Tat implements Thug{
 			else
 				setChoice('T');
 		}
+	}
+	
+	public String resultat(Thug thug2, int roundi){
+		if (choice.get(roundi).equals('C') && thug2.getChoiceRoundi(roundi).equals('C')){
+			addYears(1);
+			thug2.addYears(1);
+			return "C C "+getPrisonTime()+thug2.getPrisonTime();
+		}
+		if (choice.get(roundi).equals('C') && thug2.getChoiceRoundi(roundi).equals('T')){
+			addYears(10);
+			thug2.addYears(0);
+			return "C T "+getPrisonTime()+thug2.getPrisonTime();
+		}
+		if (choice.get(roundi).equals('T') && thug2.getChoiceRoundi(roundi).equals('C')){
+			addYears(0);
+			thug2.addYears(10);
+			return "T C "+getPrisonTime()+thug2.getPrisonTime();
+		}
+		addYears(5);
+		thug2.addYears(5);
+		return "T T "+getPrisonTime()+thug2.getPrisonTime();
 	}
 
 }

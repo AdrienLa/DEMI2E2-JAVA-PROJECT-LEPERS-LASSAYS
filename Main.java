@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		if (args.length==0){
-			dispErreurArguments();
+			System.out.println("Arguments invalides, entrez l'argument -help pour en savoir plus");
 			return;
 		}
 		
@@ -14,19 +14,20 @@ public class Main {
 		}
 		
 		if (args.length < 3){
-			dispErreurArguments();
+			System.out.println("Mauvais nombre d'arguments, entrez l'argument -help pour en savoir plus");;
 			return;
 		}
 		
 		//We ensure that <str1> and <str2> are valid
 		ArrayList<String> strategies = new ArrayList<String>();
+		strategies.add("defect");
 		strategies.add("tit");
 		strategies.add("soft");
 		strategies.add("grim");
 		strategies.add("adapttit");
 		strategies.add("hand");
-		if (!strategies.contains(args[0]) || !!strategies.contains(args[1])){
-			dispErreurArguments();
+		if (!strategies.contains(args[0]) || !strategies.contains(args[1])){
+			System.out.println("<str1> ou <str2> est incorrect, entrez l'argument -help pour en savoir plus");
 			return;
 		}
 		
@@ -59,30 +60,27 @@ public class Main {
 		if (args[1].equals("hand")) thug2 = new Handshake();
 		
 		//Loop
-		for (int i; i<Integer.parseInt(args[2]); i++){
-			thug1.chooseMoove(i, thug2);
-			thug2.chooseMoove(i, thug1);
-			thug1.applyResult(thug2);
-			thug1.applyResult(thug1);
+		for (int i=0; i < Integer.parseInt(args[2]); i++){
+			thug1.chooseMove(i, thug2);
+			thug2.chooseMove(i, thug1);
+			
+			System.out.println(thug1.resultat(thug2, i));
 		}
 	}
 	
 	
-	
-	public static void dispErreurArguments(){
-		System.out.println("Arguments invalides, entrez l'argument -help pour en savoir plus");
-	}
-	
 	public static void dispHelp(){
-		System.out.println("usage: java Main.class [-help] <str1> <str2> <nombre iterations>\n"
-				+ "\n"
+		System.out.println("usage: java Main [-help] <str1> <str2> <nombre iterations>\n\n"
 				+ "str1: stratégies du prisonnier 1\n"
 				+ "str2: stratégies du prisonnier 2\n"
-				+ "\n"
+				+ "\n\n"
 				+ "Les stratégies disponibles sont:\n"
-				+ "    tit    Tit for Tat\n"
-				+ "    soft   Soft Majority\n"
-				+ "    grim   Grim Trigger");
+				+ "    tit      Tit for Tat (Coopérer lors de la première confrontation, puis choisir la décision que le complice a pris à l’itération précédente)\n\n"
+				+ "    soft     Soft Majority (Coopérer si et seulement si l’autre joueur a coopéré au moins autant de fois qu’il a trahi)\n\n"
+				+ "    grim     Grim Trigger (Coopérer jusqu’à ce que l’autre joueur trahisse, puis toujours trahir)\n\n"
+				+ "    defect   Defect Always (Trahis toujours)\n\n" 
+				+ "    adapttit Adaptive Tit for Tat(voir http://www.prisoners-dilemma.com/strategies.html, on utilise r=0.35 et word=0.85)\n\n"
+				+ "    hand     Handshake (Trahis au premier tour et coopère au second, si son opposant a fait la même chose alors il coopère toujours sinon il trahis toujours");
 	}
 
 }

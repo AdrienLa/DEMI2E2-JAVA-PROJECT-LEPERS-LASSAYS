@@ -7,6 +7,7 @@ public interface Thug {
 	public void addYears(int time);
 	public void setChoice(char choice);
 	public ArrayList<Character> getAllChoices();
-	public char getLastChoice();
-	public char getChoiceRoundi(int roundi);
+	public Character getLastChoice();
+	public Character getChoiceRoundi(int roundi);
+	public String resultat(Thug thug2, int roundi);
 }
