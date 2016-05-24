@@ -79,7 +79,7 @@ public class Main {
 				+ "str2: stratégies du prisonnier 2\n"
 				+ "\n\n"
 				+ "Les stratégies disponibles sont:\n"
-				+ "    tit      Tit for Tat (Coopérer lors de lHandshakea première confrontation, puis choisir la décision que le complice a pris à l’itération précédente)\n\n"
+				+ "    tit      Tit for Tat (Coopérer lors de la première confrontation, puis choisir la décision que le complice a pris à l’itération précédente)\n\n"
 				+ "    soft     Soft Majority (Coopérer si et seulement si l’autre joueur a coopéré au moins autant de fois qu’il a trahi)\n\n"
 				+ "    grim     Grim Trigger (Coopérer jusqu’à ce que l’autre joueur trahisse, puis toujours trahir)\n\n"
 				+ "    defect   Defect Always (Trahis toujours)\n\n" 
