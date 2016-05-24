@@ -26,6 +26,7 @@ public class Main {
 		strategies.add("grim");
 		strategies.add("adapttit");
 		strategies.add("hand");
+		strategies.add("coop");
 		if (!strategies.contains(args[0]) || !strategies.contains(args[1])){
 			System.out.println("<str1> ou <str2> est incorrect, entrez l'argument -help pour en savoir plus");
 			return;
@@ -59,6 +60,9 @@ public class Main {
 		if (args[0].equals("hand")) thug1 = new Handshake();
 		if (args[1].equals("hand")) thug2 = new Handshake();
 		
+		if (args[0].equals("coop")) thug1 = new Coop_Always();
+		if (args[1].equals("coop")) thug2 = new Coop_Always();
+		
 		//Loop
 		for (int i=0; i < Integer.parseInt(args[2]); i++){
 			thug1.chooseMove(i, thug2);
@@ -75,12 +79,13 @@ public class Main {
 				+ "str2: stratégies du prisonnier 2\n"
 				+ "\n\n"
 				+ "Les stratégies disponibles sont:\n"
-				+ "    tit      Tit for Tat (Coopérer lors de la première confrontation, puis choisir la décision que le complice a pris à l’itération précédente)\n\n"
+				+ "    tit      Tit for Tat (Coopérer lors de lHandshakea première confrontation, puis choisir la décision que le complice a pris à l’itération précédente)\n\n"
 				+ "    soft     Soft Majority (Coopérer si et seulement si l’autre joueur a coopéré au moins autant de fois qu’il a trahi)\n\n"
 				+ "    grim     Grim Trigger (Coopérer jusqu’à ce que l’autre joueur trahisse, puis toujours trahir)\n\n"
 				+ "    defect   Defect Always (Trahis toujours)\n\n" 
 				+ "    adapttit Adaptive Tit for Tat(voir http://www.prisoners-dilemma.com/strategies.html, on utilise r=0.35 et word=0.85)\n\n"
-				+ "    hand     Handshake (Trahis au premier tour et coopère au second, si son opposant a fait la même chose alors il coopère toujours sinon il trahis toujours");
+				+ "    hand     Handshake (Trahis au premier tour et coopère au second, si son opposant a fait la même chose alors il coopère toujours sinon il trahis toujours)\n\n"
+				+ "    coop     Coop Always (Coopere toujours)");
 	}
 
 }
